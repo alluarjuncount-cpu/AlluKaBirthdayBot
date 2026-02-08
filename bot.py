@@ -2,19 +2,19 @@ import os
 import tweepy
 from datetime import date
 
+# Read secrets
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 ACCESS_SECRET = os.getenv("ACCESS_SECRET")
 
-auth = tweepy.OAuth1UserHandler(
-    API_KEY,
-    API_SECRET,
-    ACCESS_TOKEN,
-    ACCESS_SECRET
+# v2 Client (THIS IS IMPORTANT)
+client = tweepy.Client(
+    consumer_key=API_KEY,
+    consumer_secret=API_SECRET,
+    access_token=ACCESS_TOKEN,
+    access_token_secret=ACCESS_SECRET
 )
-
-api = tweepy.API(auth)
 
 birthday = date(date.today().year, 4, 8)
 today = date.today()
@@ -33,4 +33,4 @@ elif days_left == 0:
 else:
     exit()
 
-api.update_status(tweet)
+client.create_tweet(text=tweet)

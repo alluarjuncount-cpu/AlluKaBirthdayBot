@@ -2,7 +2,6 @@ import os
 import tweepy
 from datetime import date
 
-# Read credentials from GitHub Secrets
 API_KEY = os.getenv("API_KEY")
 API_SECRET = os.getenv("API_SECRET")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
@@ -17,7 +16,6 @@ auth = tweepy.OAuth1UserHandler(
 
 api = tweepy.API(auth)
 
-# 🎂 Allu Arjun Birthday: 8 April
 birthday = date(date.today().year, 4, 8)
 today = date.today()
 days_left = (birthday - today).days
@@ -36,4 +34,3 @@ else:
     exit()
 
 api.update_status(tweet)
-
